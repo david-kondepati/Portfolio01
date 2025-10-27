@@ -1,0 +1,125 @@
+.hero-section {
+  min-height: 60vh;
+  background: #0a0a0a;
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hero-gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at top right, rgba(255, 107, 43, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+}
+
+.hero-label {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #888;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.hero-title {
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 0.9;
+  margin: 0;
+  letter-spacing: -0.02em;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 80px rgba(255, 107, 43, 0.2);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-year {
+  display: inline-block;
+  background: #ff6b2b;
+  color: #0a0a0a;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 800;
+  padding: 8px 20px;
+  border-radius: 50px;
+  margin-left: 20px;
+  position: relative;
+  top: -30px;
+  animation: fadeInScale 0.8s ease-out 0.2s both;
+}
+
+.hero-subtitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  color: #888;
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.subtitle-left,
+.subtitle-right {
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 50vh;
+    padding: 60px 0;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+  }
+
+  .hero-year {
+    font-size: 1rem;
+    padding: 6px 16px;
+    top: -20px;
+    margin-left: 10px;
+  }
+
+  .hero-subtitle {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
