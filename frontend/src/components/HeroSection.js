@@ -12,11 +12,11 @@ const HeroSection = () => {
               <span className="hero-label">Updated</span>
               <h1 className="hero-title">
                 PORTFOLIO
-                <span className="hero-year">2024</span>
+                <span className="hero-year">2025</span>
               </h1>
               <div className="hero-subtitle">
-                <span className="subtitle-left">Graphic Design</span>
-                <span className="subtitle-right">Your Name</span>
+                <span className="subtitle-left">AI/ML Engineer</span>
+                <span className="subtitle-right">David Satya Vikas Kondepati</span>
               </div>
             </div>
           </div>

@@ -25,25 +25,24 @@ const AboutSection = () => {
                   <span className="exclamation">!</span>
                 </h2>
                 <p className="intro-description">
-                  My Name is <strong>Your Name</strong>. But people called me <strong className="highlight">Designer</strong>.
-                  I am a Graphic Designer based in Your City. I have been working as a
-                  freelance graphic designer for about 5 years. I love art and visual things. I
-                  usually work on projects like branding, logo design, social media design,
-                  poster design, and layouting. I am passionate about pushing the
-                  boundaries of design and exploring new skills.
+                  My Name is <strong>David Satya Vikas Kondepati</strong>. I am an <strong className="highlight">AI/ML Engineer</strong> and Full-Stack Developer based in Bangalore. I am currently pursuing my Bachelor of Engineering in Artificial Intelligence and Machine Learning at Acharya Institute of Technology with a CGPA of 8.6. I specialize in building intelligent systems using deep learning, computer vision, and modern web technologies. I am passionate about solving real-world problems through AI/ML and creating scalable full-stack applications.
                 </p>
                 <div className="contact-info">
-                  <a href="mailto:contact@example.com" className="contact-badge">
+                  <a href="mailto:davidsvk49@gmail.com" className="contact-badge">
                     <i className="bi bi-envelope-fill"></i>
-                    contact@example.com
+                    davidsvk49@gmail.com
                   </a>
-                  <a href="https://behance.net" target="_blank" rel="noopener noreferrer" className="contact-badge">
-                    <i className="bi bi-behance"></i>
-                    behance.net/yourname
+                  <a href="https://linkedin.com/in/david-satya" target="_blank" rel="noopener noreferrer" className="contact-badge">
+                    <i className="bi bi-linkedin"></i>
+                    linkedin.com/in/david-satya
                   </a>
-                  <a href="tel:+1234567890" className="contact-badge">
+                  <a href="tel:+917674054249" className="contact-badge">
                     <i className="bi bi-telephone-fill"></i>
-                    +123 456 7890
+                    +91 7674054249
+                  </a>
+                  <a href="https://github.com/david-kondepati" target="_blank" rel="noopener noreferrer" className="contact-badge">
+                    <i className="bi bi-github"></i>
+                    github.com/david-kondepati
                   </a>
                 </div>
               </div>
@@ -58,9 +57,16 @@ const AboutSection = () => {
             <div className="info-card">
               <h3 className="info-card-title">Education</h3>
               <div className="education-item">
-                <span className="year-badge">2020 - 2024</span>
-                <h4 className="education-school">Design University, City</h4>
-                <p className="education-degree">Bachelor of Visual Communication Design</p>
+                <span className="year-badge">Sep 2022 - Sep 2026</span>
+                <h4 className="education-school">Acharya Institute of Technology</h4>
+                <p className="education-degree">Bachelor of Engineering in AI & ML</p>
+                <p className="education-degree">CGPA: 8.6 | Bangalore, KA</p>
+              </div>
+              <div className="education-item mt-4">
+                <span className="year-badge">Sep 2020 - Jul 2022</span>
+                <h4 className="education-school">FIITJEE Junior College</h4>
+                <p className="education-degree">Intermediate (MPC)</p>
+                <p className="education-degree">95% | Vijayawada, AP</p>
               </div>
             </div>
           </div>
@@ -72,21 +78,10 @@ const AboutSection = () => {
               <div className="timeline">
                 <div className="timeline-item">
                   <div className="timeline-dot"></div>
-                  <span className="year-badge">2019 - present</span>
-                  <h4 className="experience-title">Freelance</h4>
-                  <p className="experience-role">Graphic Designer</p>
-                </div>
-                <div className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  <span className="year-badge">2023</span>
-                  <h4 className="experience-title">Digital Agency</h4>
-                  <p className="experience-role">Graphic Designer</p>
-                </div>
-                <div className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  <span className="year-badge">2024</span>
-                  <h4 className="experience-title">Creative Studio</h4>
-                  <p className="experience-role">Graphic Designer</p>
+                  <span className="year-badge">May 2024 - Jun 2024</span>
+                  <h4 className="experience-title">Bharat Electronics Limited (BEL)</h4>
+                  <p className="experience-role">AI/ML Intern</p>
+                  <p className="experience-description">Worked on object detection using YOLO models and machine life cycle prediction in industrial automation.</p>
                 </div>
               </div>
             </div>
@@ -95,70 +90,94 @@ const AboutSection = () => {
           {/* Skills */}
           <div className="col-lg-4">
             <div className="info-card">
-              <h3 className="info-card-title">Skills</h3>
+              <h3 className="info-card-title">Core Skills</h3>
               <div className="skills-list">
-                <div className="skill-item">Attention to detail</div>
-                <div className="skill-item">Love learning</div>
-                <div className="skill-item">Time Management</div>
-                <div className="skill-item">Creative</div>
+                <div className="skill-item">Critical Thinking</div>
+                <div className="skill-item">Problem Solving</div>
+                <div className="skill-item">Communication</div>
+                <div className="skill-item">Team Collaboration</div>
               </div>
 
-              <h3 className="info-card-title mt-4">Language</h3>
+              <h3 className="info-card-title mt-4">Languages</h3>
               <div className="language-list">
                 <div className="language-item">
                   <span>English</span>
-                  <span className="language-level">(Intermediate)</span>
+                  <span className="language-level">(Fluent)</span>
                 </div>
                 <div className="language-item">
-                  <span>Spanish</span>
+                  <span>Telugu</span>
                   <span className="language-level">(Native)</span>
+                </div>
+                <div className="language-item">
+                  <span>Hindi</span>
+                  <span className="language-level">(Fluent)</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Software Skills */}
+        {/* Technical Skills */}
         <div className="row mt-4">
           <div className="col-12">
             <div className="info-card">
-              <h3 className="info-card-title">Software Skills</h3>
+              <h3 className="info-card-title">Technical Skills</h3>
               <div className="row g-3">
                 <div className="col-md-3 col-6">
                   <div className="software-item">
-                    <div className="software-icon">Ps</div>
+                    <div className="software-icon">AI</div>
                     <div>
-                      <h5 className="software-name">Photoshop</h5>
-                      <p className="software-skill">Image editing</p>
+                      <h5 className="software-name">AI/ML</h5>
+                      <p className="software-skill">PyTorch, YOLO, TensorRT</p>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-3 col-6">
                   <div className="software-item">
-                    <div className="software-icon">Ai</div>
+                    <div className="software-icon">BE</div>
                     <div>
-                      <h5 className="software-name">Illustrator</h5>
-                      <p className="software-skill">Vector drawing</p>
+                      <h5 className="software-name">Backend</h5>
+                      <p className="software-skill">Spring Boot, REST APIs</p>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-3 col-6">
                   <div className="software-item">
-                    <div className="software-icon">Pr</div>
+                    <div className="software-icon">FE</div>
                     <div>
-                      <h5 className="software-name">Premiere Pro</h5>
-                      <p className="software-skill">Video editing</p>
+                      <h5 className="software-name">Frontend</h5>
+                      <p className="software-skill">React.js, Bootstrap</p>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-3 col-6">
                   <div className="software-item">
-                    <div className="software-icon">Ae</div>
+                    <div className="software-icon">DB</div>
                     <div>
-                      <h5 className="software-name">After Effects</h5>
-                      <p className="software-skill">Animation</p>
+                      <h5 className="software-name">Database</h5>
+                      <p className="software-skill">MySQL, Oracle</p>
                     </div>
                   </div>
+                </div>
+              </div>
+              <div className="row g-3 mt-2">
+                <div className="col-md-4 col-6">
+                  <div className="tech-badge">Java</div>
+                </div>
+                <div className="col-md-4 col-6">
+                  <div className="tech-badge">Python</div>
+                </div>
+                <div className="col-md-4 col-6">
+                  <div className="tech-badge">C</div>
+                </div>
+                <div className="col-md-4 col-6">
+                  <div className="tech-badge">SQL/PLSQL</div>
+                </div>
+                <div className="col-md-4 col-6">
+                  <div className="tech-badge">Git & GitHub</div>
+                </div>
+                <div className="col-md-4 col-6">
+                  <div className="tech-badge">Computer Vision</div>
                 </div>
               </div>
             </div>
