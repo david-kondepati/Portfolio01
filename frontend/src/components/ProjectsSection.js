@@ -5,27 +5,31 @@ const ProjectsSection = () => {
   const projects = [
     {
       id: 1,
-      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop',
-      title: 'Brand Identity Design',
-      description: 'Complete brand identity package including logo, color palette, and brand guidelines for a modern tech startup.'
+      image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop',
+      title: 'Flow-Guided Real-Time Video Inpainting',
+      description: 'Proposed a Flow-Guided Latent Diffusion Model (FGLDM) combining latent diffusion with RAFT-based optical flow for video restoration. Achieved 25 FPS in real-time with TensorRT optimization.',
+      tech: 'PyTorch, TensorRT, RAFT, Latent Diffusion'
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=600&fit=crop',
-      title: 'Social Media Campaign',
-      description: 'Creative social media designs for a 3-month marketing campaign that increased engagement by 150%.'
+      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&h=600&fit=crop',
+      title: 'Railway Ticket Booking System',
+      description: 'Built a full-stack ticket booking system using Spring Boot and MySQL. Implemented user login, ticket booking, and confirmation modules with responsive UI.',
+      tech: 'Java, Spring Boot, MySQL, HTML/CSS/JS'
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=800&h=600&fit=crop',
-      title: 'Poster Design Series',
-      description: 'Eye-catching poster series for a music festival featuring bold typography and vibrant color schemes.'
+      image: 'https://images.unsplash.com/photo-1495862433577-132cf24f867d?w=800&h=600&fit=crop',
+      title: 'E-Voting System',
+      description: 'Developed a secure and scalable e-voting platform with React.js frontend and Spring Boot backend. Designed REST APIs for voter authentication and result retrieval.',
+      tech: 'React.js, Spring Boot, REST API, MySQL'
     },
     {
       id: 4,
-      image: 'https://images.unsplash.com/photo-1586227740560-8cf2732c1531?w=800&h=600&fit=crop',
-      title: 'Magazine Layout',
-      description: 'Editorial layout design for a lifestyle magazine with modern typography and compelling visual hierarchy.'
+      image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=600&fit=crop',
+      title: 'Industrial Object Detection',
+      description: 'Contributed to object detection tasks using YOLO models for industrial use cases at BEL. Implemented machine life cycle prediction based on condition monitoring data.',
+      tech: 'YOLO, Python, Computer Vision'
     }
   ];
 
@@ -35,7 +39,7 @@ const ProjectsSection = () => {
         <div className="section-header">
           <h2 className="section-title">Featured Projects</h2>
           <p className="section-subtitle">
-            A showcase of my recent work and creative projects
+            A showcase of my recent work in AI/ML and Full-Stack Development
           </p>
         </div>
 
@@ -56,6 +60,10 @@ const ProjectsSection = () => {
                 <div className="project-content">
                   <h3 className="project-title">{project.title}</h3>
                   <p className="project-description">{project.description}</p>
+                  <div className="project-tech">
+                    <i className="bi bi-code-slash"></i>
+                    <span>{project.tech}</span>
+                  </div>
                 </div>
               </div>
             </div>
