@@ -3,7 +3,7 @@ import axios from 'axios';
 import './ContactForm.css';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+const API = `${BACKEND_URL}`;
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -30,7 +30,7 @@ const ContactForm = () => {
     setSuccess(false);
 
     try {
-      const response = await axios.post(`${API}/contact`, formData);
+      const response = await axios.post(`${API}/api/contact`, formData);
       if (response.data.success) {
         setSuccess(true);
         setFormData({

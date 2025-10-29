@@ -36,10 +36,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# --- Gmail SMTP Config ---
-GMAIL_USER = os.getenv("GMAIL_USER")
-GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
-RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL")
+# --- Brevo SMTP Config ---
+BREVO_USER = os.getenv("BREVO_USER", "9a56bf001@smtp-brevo.com")
+BREVO_PASSWORD = os.getenv("BREVO_PASSWORD", "HhSqRQF4wPjv60mC")
+RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL", "yourreceiver@gmail.com")  # change to your personal inbox
 
 # --- Pydantic Model ---
 class ContactRequest(BaseModel):
@@ -59,13 +59,13 @@ async def send_contact_email(contact: ContactRequest):
         # Compose email
         msg = MIMEMultipart("alternative")
         msg["Subject"] = f"Portfolio Contact: {contact.subject}"
-        msg["From"] = GMAIL_USER
+        msg["From"] = BREVO_USER
         msg["To"] = RECIPIENT_EMAIL
 
         html_body = f"""
         <html>
             <body style="font-family: Arial, sans-serif;">
-                <h2 style="color:#ff6b2b;">New Portfolio Message</h2>
+                <h2 style="color:#1a73e8;">New Portfolio Message</h2>
                 <p><b>Name:</b> {contact.name}</p>
                 <p><b>Email:</b> {contact.email}</p>
                 <p><b>Subject:</b> {contact.subject}</p>
@@ -79,11 +79,11 @@ async def send_contact_email(contact: ContactRequest):
 
         await aiosmtplib.send(
             msg,
-            hostname="smtp.gmail.com",
+            hostname="smtp-relay.brevo.com",
             port=587,
             start_tls=True,
-            username=GMAIL_USER,
-            password=GMAIL_APP_PASSWORD,
+            username=BREVO_USER,
+            password=BREVO_PASSWORD,
         )
 
         logger.info(f"✅ Email sent successfully from {contact.email}")
