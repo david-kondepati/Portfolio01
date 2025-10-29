@@ -1,83 +1,82 @@
 from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, EmailStr
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import aiosmtplib
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, EmailStr
-import aiosmtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 
+# --- Load Environment Variables ---
+ROOT_DIR = Path(__file__).resolve().parent
+load_dotenv(ROOT_DIR / ".env")
 
-ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
+# --- FastAPI App Setup ---
+app = FastAPI(title="Portfolio Backend API")
 
-# Create the main app without a prefix
-app = FastAPI()
-
-# Create a router with the /api prefix
+# --- Router Setup ---
 api_router = APIRouter(prefix="/api")
 
-# Gmail SMTP Configuration
-GMAIL_USER = os.environ.get('GMAIL_USER')
-GMAIL_APP_PASSWORD = os.environ.get('GMAIL_APP_PASSWORD')
-RECIPIENT_EMAIL = os.environ.get('RECIPIENT_EMAIL')
+# --- CORS Configuration ---
+frontend_url = os.getenv("FRONTEND_URL", "*")
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_origins=[frontend_url, "*"],  # allow both for dev safety
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-# Define Models
+# --- Logging ---
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+# --- Gmail SMTP Config ---
+GMAIL_USER = os.getenv("GMAIL_USER")
+GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
+RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL")
+
+# --- Pydantic Model ---
 class ContactRequest(BaseModel):
     name: str
     email: EmailStr
     subject: str
     message: str
 
-# Add your routes to the router instead of directly to app
+# --- Routes ---
 @api_router.get("/")
 async def root():
-    return {"message": "Portfolio API is running"}
+    return {"message": "Portfolio API is running successfully 🚀"}
 
 @api_router.post("/contact")
 async def send_contact_email(contact: ContactRequest):
     try:
-        # Create email message
-        msg = MIMEMultipart('alternative')
-        msg['Subject'] = f"Portfolio Contact: {contact.subject}"
-        msg['From'] = GMAIL_USER
-        msg['To'] = RECIPIENT_EMAIL
-        
-        # Create HTML email body
+        # Compose email
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = f"Portfolio Contact: {contact.subject}"
+        msg["From"] = GMAIL_USER
+        msg["To"] = RECIPIENT_EMAIL
+
         html_body = f"""
         <html>
-            <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-                <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
-                    <h2 style="color: #ff6b2b; border-bottom: 3px solid #ff6b2b; padding-bottom: 10px;">
-                        New Portfolio Contact Message
-                    </h2>
-                    
-                    <div style="margin: 20px 0;">
-                        <p style="margin: 10px 0;"><strong style="color: #555;">Name:</strong> {contact.name}</p>
-                        <p style="margin: 10px 0;"><strong style="color: #555;">Email:</strong> {contact.email}</p>
-                        <p style="margin: 10px 0;"><strong style="color: #555;">Subject:</strong> {contact.subject}</p>
-                    </div>
-                    
-                    <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin: 20px 0;">
-                        <h3 style="color: #333; margin-top: 0;">Message:</h3>
-                        <p style="white-space: pre-wrap; color: #555;">{contact.message}</p>
-                    </div>
-                    
-                    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0; text-align: center; color: #888; font-size: 12px;">
-                        <p>This message was sent from your portfolio contact form</p>
-                    </div>
-                </div>
+            <body style="font-family: Arial, sans-serif;">
+                <h2 style="color:#ff6b2b;">New Portfolio Message</h2>
+                <p><b>Name:</b> {contact.name}</p>
+                <p><b>Email:</b> {contact.email}</p>
+                <p><b>Subject:</b> {contact.subject}</p>
+                <p><b>Message:</b></p>
+                <div style="background:#f5f5f5;padding:10px;border-radius:8px;">{contact.message}</div>
             </body>
         </html>
         """
-        
-        # Attach HTML body
-        html_part = MIMEText(html_body, 'html')
-        msg.attach(html_part)
-        
-        # Send email via Gmail SMTP
+
+        msg.attach(MIMEText(html_body, "html"))
+
         await aiosmtplib.send(
             msg,
             hostname="smtp.gmail.com",
@@ -86,28 +85,13 @@ async def send_contact_email(contact: ContactRequest):
             username=GMAIL_USER,
             password=GMAIL_APP_PASSWORD,
         )
-        
-        logger.info(f"Contact email sent successfully from {contact.email}")
+
+        logger.info(f"✅ Email sent successfully from {contact.email}")
         return {"success": True, "message": "Email sent successfully"}
-        
+
     except Exception as e:
-        logger.error(f"Failed to send email: {str(e)}")
+        logger.error(f"❌ Failed to send email: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Failed to send email: {str(e)}")
 
-# Include the router in the main app
+# Include API routes
 app.include_router(api_router)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)

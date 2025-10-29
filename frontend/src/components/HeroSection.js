@@ -9,13 +9,13 @@ const HeroSection = () => {
         <div className="row h-100 align-items-center">
           <div className="col-12">
             <div className="hero-content">
-              <span className="hero-label">Updated</span>
+              <span className="hero-label">          </span>
               <h1 className="hero-title">
                 PORTFOLIO
-                <span className="hero-year">2025</span>
+                
               </h1>
               <div className="hero-subtitle">
-                <span className="subtitle-left">AI/ML Engineer</span>
+                <span className="subtitle-left">Java Full Stack Developer and ML Engineer</span>
                 <span className="subtitle-right">David Satya Vikas Kondepati</span>
               </div>
             </div>
