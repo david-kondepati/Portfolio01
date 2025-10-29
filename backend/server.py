@@ -31,7 +31,7 @@ class ContactRequest(BaseModel):
     subject: str
     message: str
 
-# Add your routes to the router instead of directly to app
+
 @api_router.get("/")
 async def root():
     return {"message": "Portfolio API is running"}
