@@ -12,7 +12,7 @@ const AboutSection = () => {
               <div className="profile-image-wrapper">
                 <div className="profile-image-border"></div>
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop"
+                  src="/images/portimg.jpeg"
                   alt="Profile"
                   className="profile-image"
                 />
@@ -25,7 +25,7 @@ const AboutSection = () => {
                   <span className="exclamation">!</span>
                 </h2>
                 <p className="intro-description">
-                  My Name is <strong>David Satya Vikas Kondepati</strong>. I am an <strong className="highlight">AI/ML Engineer</strong> and Full-Stack Developer based in Bangalore. I am currently pursuing my Bachelor of Engineering in Artificial Intelligence and Machine Learning at Acharya Institute of Technology with a CGPA of 8.6. I specialize in building intelligent systems using deep learning, computer vision, and modern web technologies. I am passionate about solving real-world problems through AI/ML and creating scalable full-stack applications.
+                  My Name is <strong>David Satya Vikas Kondepati</strong>. I am an <strong className="highlight">Java Full Stack Developer and ML Engineer</strong> and Full-Stack Developer based in Bangalore. I am currently pursuing my Bachelor of Engineering in Artificial Intelligence and Machine Learning at Acharya Institute of Technology with a CGPA of 8.6. I specialize in building intelligent systems using deep learning, computer vision, and modern web technologies. I am passionate about solving real-world problems through AI/ML and creating scalable full-stack applications.
                 </p>
                 <div className="contact-info">
                   <a href="mailto:davidsvk49@gmail.com" className="contact-badge">
@@ -34,7 +34,7 @@ const AboutSection = () => {
                   </a>
                   <a href="https://linkedin.com/in/david-satya" target="_blank" rel="noopener noreferrer" className="contact-badge">
                     <i className="bi bi-linkedin"></i>
-                    linkedin.com/in/david-satya
+                    david-satya
                   </a>
                   <a href="tel:+917674054249" className="contact-badge">
                     <i className="bi bi-telephone-fill"></i>
@@ -42,7 +42,7 @@ const AboutSection = () => {
                   </a>
                   <a href="https://github.com/david-kondepati" target="_blank" rel="noopener noreferrer" className="contact-badge">
                     <i className="bi bi-github"></i>
-                    github.com/david-kondepati
+                    david-kondepati
                   </a>
                 </div>
               </div>
@@ -109,8 +109,12 @@ const AboutSection = () => {
                   <span className="language-level">(Native)</span>
                 </div>
                 <div className="language-item">
-                  <span>Hindi</span>
+                  <span>Kannada</span>
                   <span className="language-level">(Fluent)</span>
+                </div>
+                <div className="language-item">
+                  <span>Hindi</span>
+                  <span className="language-level">(intermediate)</span>
                 </div>
               </div>
             </div>
@@ -128,7 +132,7 @@ const AboutSection = () => {
                     <div className="software-icon">AI</div>
                     <div>
                       <h5 className="software-name">AI/ML</h5>
-                      <p className="software-skill">PyTorch, YOLO, TensorRT</p>
+                      <p className="software-skill">PyTorch, YOLO, TensorRT, OpenCV, scikit-learn</p>
                     </div>
                   </div>
                 </div>
@@ -168,7 +172,7 @@ const AboutSection = () => {
                   <div className="tech-badge">Python</div>
                 </div>
                 <div className="col-md-4 col-6">
-                  <div className="tech-badge">C</div>
+                  <div className="tech-badge">AWS(Basics)</div>
                 </div>
                 <div className="col-md-4 col-6">
                   <div className="tech-badge">SQL/PLSQL</div>
@@ -177,7 +181,7 @@ const AboutSection = () => {
                   <div className="tech-badge">Git & GitHub</div>
                 </div>
                 <div className="col-md-4 col-6">
-                  <div className="tech-badge">Computer Vision</div>
+                  <div className="tech-badge">DevSecOp Tools</div>
                 </div>
               </div>
             </div>

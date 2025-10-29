@@ -74,8 +74,22 @@
 
 .subtitle-left,
 .subtitle-right {
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 1px;
+ 
+
+}
+
+.subtitle-left
+{
+   margin-left:30px;
+}
+
+
+
+.subtitle-right
+{
+   margin-right:50px;
 }
 
 @keyframes fadeInUp {
