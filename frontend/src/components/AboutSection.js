@@ -78,7 +78,7 @@ const AboutSection = () => {
               <div className="timeline">
                 <div className="timeline-item">
                   <div className="timeline-dot"></div>
-                  <span className="year-badge">May 2024 - Jun 2024</span>
+                  <span className="year-badge">July 2025 - Aug 2025</span>
                   <h4 className="experience-title">Bharat Electronics Limited (BEL)</h4>
                   <p className="experience-role">AI/ML Intern</p>
                   <p className="experience-description">Worked on object detection using YOLO models and machine life cycle prediction in industrial automation.</p>
