@@ -2,9 +2,7 @@ from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-import aiosmtplib
+import requests
 import os
 import logging
 from pathlib import Path
@@ -24,7 +22,7 @@ frontend_url = os.getenv("FRONTEND_URL", "*")
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=[frontend_url, "*"],  # allow both for dev safety
+    allow_origins=[frontend_url, "*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -36,10 +34,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# --- Brevo SMTP Config ---
-BREVO_USER = os.getenv("BREVO_USER", "9a56bf001@smtp-brevo.com")
-BREVO_PASSWORD = os.getenv("BREVO_PASSWORD", "HhSqRQF4wPjv60mC")
-RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL", "yourreceiver@gmail.com")  # change to your personal inbox
+# --- Brevo API Config ---
+BREVO_API_KEY = os.getenv("BREVO_API_KEY")
+RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL", "yourreceiver@gmail.com")
 
 # --- Pydantic Model ---
 class ContactRequest(BaseModel):
@@ -53,16 +50,19 @@ class ContactRequest(BaseModel):
 async def root():
     return {"message": "Portfolio API is running successfully 🚀"}
 
+
 @api_router.post("/contact")
 async def send_contact_email(contact: ContactRequest):
-    try:
-        # Compose email
-        msg = MIMEMultipart("alternative")
-        msg["Subject"] = f"Portfolio Contact: {contact.subject}"
-        msg["From"] = BREVO_USER
-        msg["To"] = RECIPIENT_EMAIL
+    """
+    Handles contact form submissions from the portfolio site.
+    Always sends from the verified Brevo sender (RECIPIENT_EMAIL),
+    and uses the user's email as 'replyTo'.
+    """
+    if not BREVO_API_KEY:
+        raise HTTPException(status_code=500, detail="Brevo API key not configured")
 
-        html_body = f"""
+    try:
+        html_content = f"""
         <html>
             <body style="font-family: Arial, sans-serif;">
                 <h2 style="color:#1a73e8;">New Portfolio Message</h2>
@@ -75,23 +75,38 @@ async def send_contact_email(contact: ContactRequest):
         </html>
         """
 
-        msg.attach(MIMEText(html_body, "html"))
+        payload = {
+            "sender": {"name": "Portfolio Contact Form", "email": RECIPIENT_EMAIL},
+            "to": [{"email": RECIPIENT_EMAIL}],
+            "replyTo": {"email": contact.email, "name": contact.name},
+            "subject": f"Portfolio Contact: {contact.subject}",
+            "htmlContent": html_content,
+        }
 
-        await aiosmtplib.send(
-            msg,
-            hostname="smtp-relay.brevo.com",
-            port=587,
-            start_tls=True,
-            username=BREVO_USER,
-            password=BREVO_PASSWORD,
+        headers = {
+            "accept": "application/json",
+            "api-key": BREVO_API_KEY,
+            "content-type": "application/json",
+        }
+
+        response = requests.post(
+            "https://api.brevo.com/v3/smtp/email",
+            headers=headers,
+            json=payload,
+            timeout=15,
         )
 
-        logger.info(f"✅ Email sent successfully from {contact.email}")
+        if response.status_code not in (200, 201):
+            logger.error(f"❌ Brevo API error: {response.text}")
+            raise HTTPException(status_code=500, detail=f"Brevo API error: {response.text}")
+
+        logger.info(f"✅ Email sent successfully (replyTo: {contact.email})")
         return {"success": True, "message": "Email sent successfully"}
 
     except Exception as e:
         logger.error(f"❌ Failed to send email: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Failed to send email: {str(e)}")
+
 
 # Include API routes
 app.include_router(api_router)

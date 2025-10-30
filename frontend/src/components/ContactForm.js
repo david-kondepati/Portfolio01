@@ -2,27 +2,30 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './ContactForm.css';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}`;
+// ✅ Ensure this is set in your .env file (both locally and on Render frontend):
+// REACT_APP_BACKEND_URL=https://your-backend-url.onrender.com
+const API = `${process.env.REACT_APP_BACKEND_URL}/api/contact`;
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
 
+  // Handle input changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -30,19 +33,24 @@ const ContactForm = () => {
     setSuccess(false);
 
     try {
-      const response = await axios.post(`${API}/api/contact`, formData);
+      // ✅ Send POST request to FastAPI backend
+      const response = await axios.post(API, formData, {
+        headers: { 'Content-Type': 'application/json' },
+      });
+
       if (response.data.success) {
         setSuccess(true);
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-        setTimeout(() => setSuccess(false), 5000);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setSuccess(false), 4000);
+      } else {
+        throw new Error('Failed to send message');
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to send message. Please try again.');
+      console.error('Error sending message:', err);
+      setError(
+        err.response?.data?.detail ||
+          'Failed to send message. Please try again later.'
+      );
     } finally {
       setLoading(false);
     }
@@ -61,6 +69,7 @@ const ContactForm = () => {
                 </p>
               </div>
 
+              {/* ✅ Success message */}
               {success && (
                 <div className="alert alert-custom alert-success">
                   <i className="bi bi-check-circle-fill"></i>
@@ -68,6 +77,7 @@ const ContactForm = () => {
                 </div>
               )}
 
+              {/* ❌ Error message */}
               {error && (
                 <div className="alert alert-custom alert-danger">
                   <i className="bi bi-exclamation-circle-fill"></i>
@@ -80,8 +90,7 @@ const ContactForm = () => {
                   <div className="col-md-6">
                     <div className="form-group">
                       <label htmlFor="name" className="form-label">
-                        <i className="bi bi-person-fill"></i>
-                        Your Name
+                        <i className="bi bi-person-fill"></i> Your Name
                       </label>
                       <input
                         type="text"
@@ -95,11 +104,11 @@ const ContactForm = () => {
                       />
                     </div>
                   </div>
+
                   <div className="col-md-6">
                     <div className="form-group">
                       <label htmlFor="email" className="form-label">
-                        <i className="bi bi-envelope-fill"></i>
-                        Your Email
+                        <i className="bi bi-envelope-fill"></i> Your Email
                       </label>
                       <input
                         type="email"
@@ -113,11 +122,11 @@ const ContactForm = () => {
                       />
                     </div>
                   </div>
+
                   <div className="col-12">
                     <div className="form-group">
                       <label htmlFor="subject" className="form-label">
-                        <i className="bi bi-tag-fill"></i>
-                        Subject
+                        <i className="bi bi-tag-fill"></i> Subject
                       </label>
                       <input
                         type="text"
@@ -131,11 +140,11 @@ const ContactForm = () => {
                       />
                     </div>
                   </div>
+
                   <div className="col-12">
                     <div className="form-group">
                       <label htmlFor="message" className="form-label">
-                        <i className="bi bi-chat-dots-fill"></i>
-                        Message
+                        <i className="bi bi-chat-dots-fill"></i> Message
                       </label>
                       <textarea
                         className="form-control"
@@ -149,6 +158,7 @@ const ContactForm = () => {
                       ></textarea>
                     </div>
                   </div>
+
                   <div className="col-12">
                     <button type="submit" className="btn btn-submit" disabled={loading}>
                       {loading ? (
@@ -158,8 +168,7 @@ const ContactForm = () => {
                         </>
                       ) : (
                         <>
-                          <i className="bi bi-send-fill"></i>
-                          Send Message
+                          <i className="bi bi-send-fill"></i> Send Message
                         </>
                       )}
                     </button>
@@ -168,9 +177,8 @@ const ContactForm = () => {
               </form>
             </div>
 
-            {/* Footer */}
             <div className="footer-text">
-              <p>© 2024 Your Name. All rights reserved.</p>
+              <p>© {new Date().getFullYear()} David Satya Vikas Kondepati. All rights reserved.</p>
             </div>
           </div>
         </div>
