@@ -5,21 +5,21 @@ const ProjectsSection = () => {
   const projects = [
     {
       id: 1,
-      image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop',
+      image: '/images/flow.png?w=800&h=600&fit=crop',
       title: 'Flow-Guided Real-Time Video Inpainting',
       description: 'Proposed a Flow-Guided Latent Diffusion Model (FGLDM) combining latent diffusion with RAFT-based optical flow for video restoration. Achieved 25 FPS in real-time with TensorRT optimization.',
       tech: 'PyTorch, TensorRT, RAFT, Latent Diffusion'
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&h=600&fit=crop',
+      image: '/images/train.png?w=800&h=600&fit=crop',
       title: 'Railway Ticket Booking System',
       description: 'Built a full-stack ticket booking system using Spring Boot and MySQL. Implemented user login, ticket booking, and confirmation modules with responsive UI.',
       tech: 'Java, Spring Boot, MySQL, HTML/CSS/JS'
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1495862433577-132cf24f867d?w=800&h=600&fit=crop',
+      image: '/images/voting.png?w=800&h=600&fit=crop',
       title: 'E-Voting System',
       description: 'Developed a secure and scalable e-voting platform with React.js frontend and Spring Boot backend. Designed REST APIs for voter authentication and result retrieval.',
       tech: 'React.js, Spring Boot, REST API, MySQL'
