@@ -53,9 +53,7 @@ const ProjectsSection = () => {
                     alt={project.title} 
                     className="project-image"
                   />
-                  <div className="project-overlay">
-                    <i className="bi bi-arrow-up-right"></i>
-                  </div>
+              
                 </div>
                 <div className="project-content">
                   <h3 className="project-title">{project.title}</h3>
