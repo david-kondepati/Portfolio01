@@ -12,7 +12,7 @@ const AboutSection = () => {
               <div className="profile-image-wrapper">
                 <div className="profile-image-border"></div>
                 <img
-                  src="/images/portimg.jpeg"
+                  src="/images/suite.png?w=400&h=400&fit=crop"
                   alt="Profile"
                   className="profile-image"
                 />
