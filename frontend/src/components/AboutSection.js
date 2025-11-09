@@ -175,10 +175,10 @@ const AboutSection = () => {
                   <div className="tech-badge">AWS(Basics)</div>
                 </div>
                 <div className="col-md-4 col-6">
-                  <div className="tech-badge">SQL/PLSQL</div>
+                  <div className="tech-badge">SQL/NoSQL</div>
                 </div>
                 <div className="col-md-4 col-6">
-                  <div className="tech-badge">Git & GitHub</div>
+                  <div className="tech-badge">React.js</div>
                 </div>
                 <div className="col-md-4 col-6">
                   <div className="tech-badge">DevSecOp Tools</div>
