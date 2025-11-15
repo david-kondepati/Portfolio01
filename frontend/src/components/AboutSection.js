@@ -25,7 +25,7 @@ const AboutSection = () => {
                   <span className="exclamation">!</span>
                 </h2>
                 <p className="intro-description">
-                  My Name is <strong>David Satya Vikas Kondepati</strong>. I am an <strong className="highlight">Java Full Stack Developer and ML Engineer</strong> and Full-Stack Developer based in Bangalore. I am currently pursuing my Bachelor of Engineering in Artificial Intelligence and Machine Learning at Acharya Institute of Technology with a CGPA of 8.6. I specialize in building intelligent systems using deep learning, computer vision, and modern web technologies. I am passionate about solving real-world problems through AI/ML and creating scalable full-stack applications.
+                  My Name is <strong>David Satya Vikas Kondepati</strong>. I am an <strong className="highlight">Java Full Stack Developer and ML Engineer</strong> based in Bangalore. I am currently pursuing my Bachelor of Engineering in Artificial Intelligence and Machine Learning at Acharya Institute of Technology with a CGPA of 8.6. I specialize in building intelligent systems using deep learning, computer vision, and modern web technologies. I am passionate about solving real-world problems through AI/ML and creating scalable full-stack applications.
                 </p>
                 <div className="contact-info">
                   <a href="mailto:davidsvk49@gmail.com" className="contact-badge">
